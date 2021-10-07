@@ -1,0 +1,30 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers/typescript-node
+{
+	"name": "Node.js & TypeScript - ACDC Ensemble by groma84",
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"dockerFile": "Dockerfile",
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"CoenraadS.bracket-pair-colorizer-2",
+		"dbaeumer.vscode-eslint",
+		"eg2.vscode-npm-script",
+		"christian-kohler.npm-intellisense",
+		"esbenp.prettier-vscode"
+	],
+	"postCreateCommand": "sudo chown node node_modules",
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// If you have cloned the repo via SSH and want to use your local SSH keys, follow this tutorial:
+	// https://code.visualstudio.com/docs/remote/containers#_using-ssh-keys
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "node",
+	// node_modules performance fix for windows, 
+	// see https://code.visualstudio.com/docs/remote/containers-advanced#_use-a-targeted-named-volume
+	"mounts": [
+		"source=acdc_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+	]
+}
